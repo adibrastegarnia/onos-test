@@ -15,9 +15,10 @@
 package cli
 
 import (
+	"io/ioutil"
+
 	"github.com/onosproject/onos-test/pkg/kube"
 	"github.com/onosproject/onos-test/pkg/onit/env"
-	"io/ioutil"
 
 	"github.com/spf13/cobra"
 	corev1 "k8s.io/api/core/v1"
@@ -25,8 +26,11 @@ import (
 
 var (
 	addExample = `
-		# Add a simulator with a given name
-		onit add simulator simulator-1
+		# Add a simulator with a given name to "onos" cluster
+		onit add simulator -n simulator-1
+
+		# Add a simulator to a specific cluster (e.g. onos-1)
+		onit add simulator -c onos-1
 
 		# Add a network of stratum switches that emulates a linear network topology with two nodes
 		onit add network stratum-linear --topo linear,2
